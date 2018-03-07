@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCar", "SmartCar.csproj", "{4F856F5E-46B3-AA7B-73DB-2E0077D61426}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCar.Plugins", "SmartCar.Plugins.csproj", "{646CBE5F-7036-1381-BFB7-3E308D69C7C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCar.Editor.Plugins", "SmartCar.Editor.Plugins.csproj", "{A7506E28-B5DF-5B17-2A3E-7509F1AB5FC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F856F5E-46B3-AA7B-73DB-2E0077D61426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F856F5E-46B3-AA7B-73DB-2E0077D61426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F856F5E-46B3-AA7B-73DB-2E0077D61426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F856F5E-46B3-AA7B-73DB-2E0077D61426}.Release|Any CPU.Build.0 = Release|Any CPU
+		{646CBE5F-7036-1381-BFB7-3E308D69C7C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{646CBE5F-7036-1381-BFB7-3E308D69C7C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{646CBE5F-7036-1381-BFB7-3E308D69C7C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{646CBE5F-7036-1381-BFB7-3E308D69C7C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7506E28-B5DF-5B17-2A3E-7509F1AB5FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7506E28-B5DF-5B17-2A3E-7509F1AB5FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7506E28-B5DF-5B17-2A3E-7509F1AB5FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7506E28-B5DF-5B17-2A3E-7509F1AB5FC1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
