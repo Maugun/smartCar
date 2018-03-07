@@ -4,7 +4,11 @@
 
 ### Prerequisites
 
-* Install Unity3D
+* Install Unity3D (Only for Dev)
+
+### Download
+
+* [Donwload Link](https://github.com/Maugun/smartCar/releases)
 
 ## Built With
 
