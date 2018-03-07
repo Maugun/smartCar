@@ -1,4 +1,4 @@
-# Project Title
+# SmartCar
 
 **SmartCar** is a test project for self driving cars. Cars learn how to drive using an **Unsupervised Neural Network (UNN)** & a **Generic Algorithm**.
 
