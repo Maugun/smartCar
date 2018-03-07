@@ -10,6 +10,16 @@
 
 * [Unity3D](https://unity3d.com/) - Game Development Platform
 
+## How to Use
+
+![alt Config Screen](https://github.com/Maugun/smartCar/blob/master/Samples/Config_Screen.png)
+
+* **Population Size** Number of Cars produced by Generation - **Default: 50**
+* **Keep X best Cars of each Generation** Number of Cars kept from one Generation to another. The other Cars will be mutated version of those kept Cars. - **Default: 20**
+
+* **Layers** Number of Neurons by Layer of the UNN. The first Layer is the **Input Layer** and is **always set to 6** (= number of car sensors). The last Layer is the **Output Layer** and is **always set to 2** (= v (acceleration/brake) & h (steering)). - **Default: [6, 10, 10, 2]**
+* **Bias** If set to True (checked) add a Bias to the UNN. - **Default: True**
+
 ## Authors
 
 * **Richard ALLEMAN** - *Initial work* - [Maugun](https://github.com/Maugun)
