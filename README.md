@@ -12,7 +12,7 @@
 
 ## How to Use
 
-![alt Config Screen](https://github.com/Maugun/smartCar/blob/master/Samples/Config_Screen.png)
+![alt Config Screen](https://raw.githubusercontent.com/Maugun/smartCar/master/Samples/Config_Screen.PNG)
 
 * **Population Size** Number of Cars produced by Generation - **Default: 50**
 * **Keep X best Cars of each Generation** Number of Cars kept from one Generation to another. The other Cars will be mutated version of those kept Cars. - **Default: 20**
