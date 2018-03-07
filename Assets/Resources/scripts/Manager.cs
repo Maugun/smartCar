@@ -96,19 +96,12 @@ public class Manager : MonoBehaviour
                             selectedPop = 1;
                         _nets[i] = new NeuralNetwork(_nets[_populationSize - selectedPop]);
                         _nets[i].Mutate();
+                        selectedPop++;
                     }
                     for (int i = _populationSize - _selectedPopulationNb - 1; i < _populationSize; ++i)
                     {
                         _nets[i] = new NeuralNetwork(_nets[i]);
                     }
-
-                    //for (int i = 0; i < _populationSize / 2; ++i)
-                    //{
-                    //    _nets[i] = new NeuralNetwork(_nets[i + (_populationSize / 2)]);
-                    //    _nets[i].Mutate();
-
-                    //    _nets[i + (_populationSize / 2)] = new NeuralNetwork(_nets[i + (_populationSize / 2)]); //too lazy to write a reset neuron matrix values method....so just going to make a deepcopy lol
-                    //}
 
                     // Reset Fitness
                     for (int i = 0; i < _populationSize; i++)
@@ -145,7 +138,6 @@ public class Manager : MonoBehaviour
             car.Init(_nets[i], _secBeforeDeath);
             _prefabList.Add(car);
         }
-
     }
 
     void InitBoomerangNeuralNetworks()
