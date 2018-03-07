@@ -62,29 +62,19 @@ public class CarUserControl : MonoBehaviour
     {
         // Cast forward, backward, right and left
         float[] inputs = new float[6];
-        inputs[0] = (float) CastRay(transform.forward, Vector3.forward, 1) / _rayCastLen;
-        inputs[1] = (float) CastRay(-transform.forward, -Vector3.forward, 3) / _rayCastLen;
-        inputs[2] = (float) CastRay(transform.right, Vector3.right, 5) / _rayCastLen;
-        inputs[3] = (float) CastRay(-transform.right, -Vector3.right, 7) / _rayCastLen;
+        inputs[0] = (float)CastRay(transform.forward, Vector3.forward, 1);
+        inputs[1] = (float) CastRay(-transform.forward, -Vector3.forward, 3);
+        inputs[2] = (float) CastRay(transform.right, Vector3.right, 5);
+        inputs[3] = (float) CastRay(-transform.right, -Vector3.right, 7);
 
         // Cast left & right forward
         float SqrtHalf = Mathf.Sqrt(0.5f);
         inputs[4] = (float) CastRay(transform.right * SqrtHalf + transform.forward * SqrtHalf,
                                     Vector3.right * SqrtHalf + Vector3.forward * SqrtHalf,
-                                    9) / _rayCastLen;
+                                    9);
         inputs[5] = (float) CastRay(-transform.right * SqrtHalf + transform.forward * SqrtHalf,
                                     -Vector3.right * SqrtHalf + Vector3.forward * SqrtHalf,
-                                    13) / _rayCastLen;
-        //for (int i = 0; i < inputs.Length; ++i)
-        //    Debug.Log(i + ": " + inputs[i]);
-
-        // RayCast Rendering
-        //Debug.DrawRay(transform.position, _rayCastLen * transform.forward, Color.green);
-        //Debug.DrawRay(transform.position, _rayCastLen * -transform.forward, Color.green);
-        //Debug.DrawRay(transform.position, _rayCastLen * transform.right, Color.green);
-        //Debug.DrawRay(transform.position, _rayCastLen * -transform.right, Color.green);
-        //Debug.DrawRay(transform.position, _rayCastLen * (transform.right * SqrtHalf + transform.forward * SqrtHalf), Color.green);
-        //Debug.DrawRay(transform.position, _rayCastLen * (-transform.right * SqrtHalf + transform.forward * SqrtHalf), Color.green);
+                                    13);
 
         // Feed UNN
         float[] output = _net.FeedForward(inputs);
