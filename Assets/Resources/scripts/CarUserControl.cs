@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Vehicles.Car;
 
@@ -18,11 +19,19 @@ public class CarUserControl : MonoBehaviour
     [SerializeField]
     private LayerMask _sensorMask; // Defines the layer of the walls ("Wall")
     private LineRenderer _lr;
+    private bool _displayNN = false;
+    private GameObject _canvas = null;
 
     public bool _isPlayer = false;
 
-    public void Init(NeuralNetwork net, int secBeforeDeath)
+    public void Init(NeuralNetwork net, int secBeforeDeath, GameObject canvas = null)
     {
+        if (canvas != null)
+        {
+            _canvas = canvas;
+            _displayNN = true;
+            transform.Find("Indicator").gameObject.SetActive(true);
+        }
         _secBeforeDeath = secBeforeDeath;
         _guid = Guid.NewGuid().ToString();
         _car = GetComponent<CarController>();
@@ -51,7 +60,15 @@ public class CarUserControl : MonoBehaviour
                 _v = CrossPlatformInputManager.GetAxis("Vertical");
             }
             else
+            {
+                // NN Actions
                 Brain();
+
+                // Display NN
+                if (_displayNN)
+                    DisplayBrain();
+            }
+                
 
             //Debug.Log(_h + " , " + _v);
             _car.Move(_h, _v, _v, 0f);
@@ -123,6 +140,17 @@ public class CarUserControl : MonoBehaviour
             yield return new WaitForSeconds(_secBeforeDeath); // Wait for some time
             if (OldFitness == _net.GetFitness()) // Check if the fitness didn't change yet
                 WallHit(); // Kill this car
+        }
+    }
+
+    private void DisplayBrain()
+    {
+        for (int i = 0; i < _net._neurons.Length; ++i)
+        {
+            for (int y = 0; y < _net._neurons[i].Length; ++y)
+            {
+                _canvas.transform.Find("Best NN").Find("n[" + i + "," + y + "]").GetChild(0).GetComponent<Text>().text = _net._neurons[i][y].ToString("0.000");
+            }
         }
     }
 }

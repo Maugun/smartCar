@@ -37,6 +37,8 @@ public class Manager : MonoBehaviour
     private float _maxFitness = 0;
     private Vector2 _resolutionScale;
     private int _displayMode = 0;
+    public Material _weightMaterial;
+    private NeuralNetwork _bestNN = null;
 
     private void Start()
     {
@@ -88,7 +90,7 @@ public class Manager : MonoBehaviour
                     // Data Display
                     UpdateDisplay();
 
-                    // Select UNN Population + Mutation
+                    // Selected UNN Population + Mutation
                     int selectedPop = 1;
                     for (int i = 0; i < _populationSize - _selectedPopulationNb; ++i)
                     {
@@ -98,16 +100,14 @@ public class Manager : MonoBehaviour
                         _nets[i].Mutate();
                         selectedPop++;
                     }
-                    for (int i = _populationSize - _selectedPopulationNb - 1; i < _populationSize; ++i)
-                    {
+
+                    // Selected UNN Population
+                    for (int i = _populationSize - _selectedPopulationNb; i < _populationSize; ++i)
                         _nets[i] = new NeuralNetwork(_nets[i]);
-                    }
 
                     // Reset Fitness
                     for (int i = 0; i < _populationSize; i++)
-                    {
                         _nets[i].SetFitness(0f);
-                    }
                 }
 
                 // Set new generation
@@ -135,7 +135,11 @@ public class Manager : MonoBehaviour
         for (int i = 0; i < _populationSize; i++)
         {
             CarUserControl car = ((GameObject)Instantiate(_prefab, _spawn.transform.position, _spawn.transform.rotation)).GetComponent<CarUserControl>();
-            car.Init(_nets[i], _secBeforeDeath);
+
+            if (_generationNumber > 1 && i == _populationSize - 1)
+                car.Init(_nets[i], _secBeforeDeath, _canvas);
+            else
+                car.Init(_nets[i], _secBeforeDeath);
             _prefabList.Add(car);
         }
     }
@@ -293,12 +297,11 @@ public class Manager : MonoBehaviour
                 name = "w[" + j + "]"
             };
             weight.AddComponent<LineRenderer>();
-            weight.GetComponent<LineRenderer>().startWidth = 0.1f;
-            weight.GetComponent<LineRenderer>().endWidth = 0.1f;
+            weight.GetComponent<LineRenderer>().startWidth = 0.2f;
+            weight.GetComponent<LineRenderer>().endWidth = 0.2f;
             weight.GetComponent<LineRenderer>().useWorldSpace = false;
             weight.GetComponent<LineRenderer>().SetPositions(positions.ToArray());
-            weight.GetComponent<LineRenderer>().material = Resources.Load("red", typeof(Material)) as Material;
-            weight.GetComponent<LineRenderer>().material.color = new Color(1f, 0f, 0f, 1f);
+            weight.GetComponent<LineRenderer>().material = _weightMaterial;
             weight.transform.SetParent(neuronLineContainer.transform);
             weight.transform.position = Vector3.zero;
             weight.transform.localPosition = Vector3.zero;
@@ -322,12 +325,6 @@ public class Manager : MonoBehaviour
         avgFitness = avgFitness / (_maxFitness / 100);
         bestFitness = bestFitness / (_maxFitness / 100);
         worstFitness = worstFitness / (_maxFitness / 100);
-        //Debug.Log("# ========== #" + "\n" +
-        //          "Generation: " + _generationNumber + "\n" +
-        //          "Best: " + bestFitness + "\n" +
-        //          "AVG: " + avgFitness + "\n" +
-        //          "Worst: " + worstFitness + "\n" +
-        //          "# ========== #");
         _canvas.transform.Find("Graph & Infos").Find("Best").GetComponent<Text>().text = BEST + bestFitness.ToString("0.00") + PERCENT;
         _canvas.transform.Find("Graph & Infos").Find("AVG").GetComponent<Text>().text = AVG + avgFitness.ToString("0.00") + PERCENT;
         _canvas.transform.Find("Graph & Infos").Find("Worst").GetComponent<Text>().text = WORST + worstFitness.ToString("0.00") + PERCENT;
@@ -340,27 +337,18 @@ public class Manager : MonoBehaviour
         DrawGraph(_bestLineRenderer, _bestFitnessList);
         DrawGraph(_worstLineRenderer, _worstFitnessList);
 
-        // NN Display
-        NeuralNetwork net = _nets[_populationSize - 1];
-
-        // Neurons
-        for (int i = 0; i < net._neurons.Length; ++i)
-        {
-            for (int y = 0; y < net._neurons[i].Length; ++y)
-            {
-                _canvas.transform.Find("Best NN").Find("n[" + i + "," + y + "]").GetChild(0).GetComponent<Text>().text = net._neurons[i][y].ToString("0.000");
-            }
-        }
+        // Besr NN Display
+        _bestNN = _nets[_populationSize - 1];
         
-        // Weights
-        for (int i = 0; i < net._weights.Length; ++i)
+        // Best Weights
+        for (int i = 0; i < _bestNN._weights.Length; ++i)
         {
-            for (int y = 0; y < net._weights[i].Length; ++y)
+            for (int y = 0; y < _bestNN._weights[i].Length; ++y)
             {
                     
-                for (int k = 0; k < net._weights[i][y].Length; ++k)
+                for (int k = 0; k < _bestNN._weights[i][y].Length; ++k)
                 {
-                    float w = net._weights[i][y][k];
+                    float w = _bestNN._weights[i][y][k];
                     Color color = Color.black;
                     if (w >= 0)
                         color = new Color(1f, 0f, 0f, w);
