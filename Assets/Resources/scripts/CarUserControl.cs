@@ -77,14 +77,14 @@ public class CarUserControl : MonoBehaviour
 
     private void Brain()
     {
-        // Cast forward, backward, right and left
+        // Cast forward, backward, right & left
         float[] inputs = new float[6];
         inputs[0] = (float)CastRay(transform.forward, Vector3.forward, 1);
         inputs[1] = (float) CastRay(-transform.forward, -Vector3.forward, 3);
         inputs[2] = (float) CastRay(transform.right, Vector3.right, 5);
         inputs[3] = (float) CastRay(-transform.right, -Vector3.right, 7);
 
-        // Cast left & right forward
+        // Cast top right & top left
         float SqrtHalf = Mathf.Sqrt(0.5f);
         inputs[4] = (float) CastRay(transform.right * SqrtHalf + transform.forward * SqrtHalf,
                                     Vector3.right * SqrtHalf + Vector3.forward * SqrtHalf,

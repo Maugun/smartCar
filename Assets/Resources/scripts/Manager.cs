@@ -277,6 +277,67 @@ public class Manager : MonoBehaviour
         txt.GetComponent<Text>().text = "" + value;
         txt.GetComponent<Text>().font = Resources.GetBuiltinResource<Font>("Arial.ttf");
         txt.transform.position = new Vector3((50f + (i * 100)) * _resolutionScale.x, (580f - (y * 50)) * _resolutionScale.y, 0f);
+
+        // Inputs, Outputs Text
+        if ((i == 0 || i == (_layers.Length - 1)) && y < _layers[0])
+        {
+            var ioTxt = new GameObject
+            {
+                layer = 5
+            };
+            ioTxt.AddComponent<Text>();
+            ioTxt.GetComponent<Text>().fontSize = 14;
+            ioTxt.GetComponent<Text>().fontStyle = FontStyle.Bold;
+            ioTxt.GetComponent<Text>().color = Color.black;
+            ioTxt.GetComponent<Text>().alignment = TextAnchor.MiddleLeft;
+            ioTxt.transform.localScale = new Vector3(1 * _resolutionScale.x, 1 * _resolutionScale.y, 1f);
+            ioTxt.transform.SetParent(img.transform);
+            ioTxt.GetComponent<Text>().text = "TL";
+            ioTxt.GetComponent<Text>().font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+
+            // Inputs
+            if (i == 0)
+            {
+                ioTxt.transform.position = new Vector3((57f + (i * 100)) * _resolutionScale.x, (580f - (y * 50)) * _resolutionScale.y, 0f);
+                switch (y)
+                {
+                    case 0:
+                        ioTxt.GetComponent<Text>().text = "F";
+                        break;
+                    case 1:
+                        ioTxt.GetComponent<Text>().text = "B";
+                        break;
+                    case 2:
+                        ioTxt.GetComponent<Text>().text = "R";
+                        break;
+                    case 3:
+                        ioTxt.GetComponent<Text>().text = "L";
+                        break;
+                    case 4:
+                        ioTxt.GetComponent<Text>().text = "TR";
+                        break;
+                    case 5:
+                        ioTxt.GetComponent<Text>().text = "TL";
+                        break;
+                }
+            }
+                
+
+            // Outputs
+            if (i == (_layers.Length - 1))
+            {
+                ioTxt.transform.position = new Vector3((126f + (i * 100)) * _resolutionScale.x, (580f - (y * 50)) * _resolutionScale.y, 0f);
+                switch (y)
+                {
+                    case 0:
+                        ioTxt.GetComponent<Text>().text = "V";
+                        break;
+                    case 1:
+                        ioTxt.GetComponent<Text>().text = "H";
+                        break;
+                }
+            }
+        } 
     }
 
     void DrawWeight(int i, int y, GameObject neuronLineContainer, bool bias)
