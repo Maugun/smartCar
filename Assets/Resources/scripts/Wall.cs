@@ -7,7 +7,7 @@ public class Wall : MonoBehaviour
     [SerializeField]
     string _layerHitName = "Player"; // The name of the layer set on each car
 
-    private void OnCollisionEnter(Collision collision) // Once anything hits the wall
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer(_layerHitName)) // Make sure it's a car
         {

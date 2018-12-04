@@ -7,17 +7,17 @@ using UnityStandardAssets.Vehicles.Car;
 
 public class CarUserControl : MonoBehaviour
 {
-    private CarController _car; // the car controller we want to use
+    private CarController _car;             // the car controller we want to use
     private bool _initilized = false;
     private NeuralNetwork _net;
     private float _h = 0f;
     private float _v = 0f;
-    public string _guid; // The Unique ID of the current car
+    public string _guid;                    // The Unique ID of the current car
     public int _secBeforeDeath = 5;
     public int _rayCastLen = 12;
 
     [SerializeField]
-    private LayerMask _sensorMask; // Defines the layer of the walls ("Wall")
+    private LayerMask _sensorMask;          // Defines the layer of the walls ("Wall")
     private LineRenderer _lr;
     private bool _displayNN = false;
     private GameObject _canvas = null;
@@ -55,7 +55,7 @@ public class CarUserControl : MonoBehaviour
         {
             if (_isPlayer)
             {
-                // pass the input to the car!
+                // Give inputs to the car!
                 _h = CrossPlatformInputManager.GetAxis("Horizontal");
                 _v = CrossPlatformInputManager.GetAxis("Vertical");
             }

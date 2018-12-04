@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    THIS SCRIPT IS NOT USED IN THE CURRENT PROJECT
+
+    This script was used to test the NN in early dev
+*/
+
 public class HexagonAnimator : MonoBehaviour
 {
     bool increasingSize = true;
     Material mat;
-    // Use this for initialization
+
     void Start()
     {
         mat = GetComponent<Renderer>().material;
         mat.color = Color.yellow;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float delta = Time.deltaTime;
@@ -40,7 +45,5 @@ public class HexagonAnimator : MonoBehaviour
         }
 
         transform.localScale = localScale;
-
-
     }
 }

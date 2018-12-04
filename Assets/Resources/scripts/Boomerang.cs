@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    THIS SCRIPT IS NOT USED IN THE CURRENT PROJECT
+
+    This script was used to test the NN in early dev
+*/
+
 public class Boomerang : MonoBehaviour
 {
     private bool initilized = false;

@@ -73,7 +73,7 @@ public class Manager : MonoBehaviour
             {
                 if (_generationNumber == 0)
                 {
-                    InitBoomerangNeuralNetworks();
+                    InitNeuralNetworks();
                     _avgFitnessList.Add(0);
                     _bestFitnessList.Add(0);
                     _worstFitnessList.Add(0);
@@ -144,7 +144,7 @@ public class Manager : MonoBehaviour
         }
     }
 
-    void InitBoomerangNeuralNetworks()
+    void InitNeuralNetworks()
     {
         _nets = new List<NeuralNetwork>();
         _avgLineRenderer = Camera.main.transform.Find("Draw").Find("Graph").Find("avgLineRenderer").GetComponent<LineRenderer>();
@@ -398,7 +398,7 @@ public class Manager : MonoBehaviour
         DrawGraph(_bestLineRenderer, _bestFitnessList);
         DrawGraph(_worstLineRenderer, _worstFitnessList);
 
-        // Besr NN Display
+        // Best NN Display
         _bestNN = _nets[_populationSize - 1];
         
         // Best Weights
