@@ -8,7 +8,8 @@
 
 ### Download
 
-* [Download Link](https://github.com/Maugun/smartCar/releases)
+* [Download Link](https://github.com/Maugun/smartCar/releases) (Recommended)
+* [Web Version](https://maugun.github.io/smartCar/Web/index.html) (Not optimal)
 
 ## Built With
 
