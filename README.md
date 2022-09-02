@@ -2,6 +2,8 @@
 
 **SmartCar** is a test project for self driving cars. Cars learn how to drive using an **Unsupervised Neural Network (UNN)** & a **Generic Algorithm**.
 
+This is kinda an older version of the project [NEATUnity](https://github.com/Maugun/NEATUnity).
+
 ### Prerequisites
 
 * Install Unity3D (Only for Dev)
